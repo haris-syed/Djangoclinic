@@ -1,0 +1,54 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div class="jumbotron">
+    <h1>Stuff</h1>
+    <p class="lead">Django is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+    <p><a href="https://www.djangoproject.com/" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+</div>
+
+<form method="post" action="">
+<div class="row">
+    <div class="col-md-4">
+        <h2>Doctors list</h2>
+        <p>
+            Select a Doctor
+        </p>
+        <p>
+            <select name="doctor">
+                {% for doc in doctors %}
+                    <option value=" {{doc.id}}">{{doc.name}}</option>
+                {% endfor %}
+            </select>
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h2>Patients list</h2>
+        <p>Select a patient</p>
+        <select name="patient">
+         {% for pat in patients %}
+            <option value={{pat.id}}> {{pat.name}} </option>
+         {% endfor %}
+        </select>
+    </div>
+    <div class="col-md-4">
+        <h2>Select date and time</h2>
+
+         <input name ="appDate" type="datetime" />
+       
+    </div>
+</div>
+<input type="submit" value="Reserve" />
+</form>
+
+<div>
+    <p>    Doctor Patient DateandTime</p>
+    <ul>
+        {%for a in appointments %}
+            <li>{{a.doctor.name}} | {{a.patient.name}} | {{a.datetime}} </li>
+        {%endfor%}
+    </ul>
+</div>
+
+{% endblock %}
